@@ -17,6 +17,15 @@ pipeline {
             }
         }
 
+        stage('Publicar Artefatos') {
+            steps {
+                echo 'Publicando arquivos compilados...'
+
+                archiveArtifacts artifacts: 'build/*.class',
+                                fingerprint: true
+            }
+        }
+
         stage('Execucao') {
             steps {
                 echo 'Executando aplicacao Java...'
